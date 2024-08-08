@@ -95,13 +95,4 @@ if ("function" === typeof setImmediate) {
   };
 }
 
-// Ensure that the jsbn modInverse function always returns a positive result
-const originalModInverse = forge.jsbn.BigInteger.prototype.modInverse;
-const positiveModInverse = function(m) {
-  const inv = originalModInverse.apply(this, [m]);
-  return inv.mod(m);
-}
-
-forge.jsbn.BigInteger.prototype.modInverse = positiveModInverse;
-
 module.exports = forge;
